@@ -12,6 +12,8 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:8000",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -66,4 +68,4 @@ async def predict(
     }
 
 if __name__ == "__main__":
-    uvicorn.run(app, host='localhost', port=8001)
+    uvicorn.run(app, host='localhost', port=8000)
