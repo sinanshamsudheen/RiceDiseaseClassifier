@@ -1,6 +1,6 @@
 # Rice Disease Classification System
 
-![Rice Disease Classification](frontend/src/bg.png)
+![Rice Disease Classification](frontend/assets/demo.gif)
 
 An AI-powered web application for automated detection and classification of rice plant diseases using deep learning techniques.
 
