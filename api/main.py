@@ -25,7 +25,7 @@ app.add_middleware(
 
 MODEL = tf.keras.models.load_model("../saved_models/1")
 
-CLASS_NAMES = ['Bacterialblight', 'Blast', 'Brownspot', 'HealthyRiceLeaf']
+CLASS_NAMES = ['Brown Spot (തവിട്ടു പുള്ളി രോഗം)', 'Bacterial blight (ബാക്ടീരിയൽ ബ്ലൈറ്റ്)', 'Blast (ബ്ലാസ്റ്റ് രോഗം)']
 
 @app.get("/ping")
 async def ping():

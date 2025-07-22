@@ -45,8 +45,8 @@ const StyledAppBar = styled(AppBar)({
 
 const StyledCard = styled(Card)(({ image }) => ({
   margin: "auto",
-  maxWidth: 400,
-  height: image ? 500 : 'auto',
+  maxWidth: 500,
+  height: image ? 550 : 'auto', // Increased height when image is present
   backgroundColor: 'rgba(255, 255, 255, 0.3)',
   boxShadow: '0px 9px 70px 0px rgb(0 0 0 / 30%) !important',
   borderRadius: '15px',
@@ -64,6 +64,8 @@ const StyledCardMedia = styled(CardMedia)({
 const StyledTableContainer = styled(TableContainer)({
   backgroundColor: 'transparent !important',
   boxShadow: 'none !important',
+  width: '100%', // Ensure table uses full width
+  maxWidth: '480px', // Set maximum width for the table container
 });
 
 const StyledTable = styled(Table)({
@@ -76,6 +78,8 @@ const StyledTableHead = styled(TableHead)({
 
 const StyledTableRow = styled(TableRow)({
   backgroundColor: 'transparent !important',
+  height: 'auto', // Allow the row to grow based on content
+  minHeight: '60px', // Set minimum height
 });
 
 const LabelTableCell = styled(TableCell)({
@@ -84,16 +88,20 @@ const LabelTableCell = styled(TableCell)({
   borderColor: 'transparent !important',
   color: '#000000a6 !important',
   fontWeight: 'bolder',
-  padding: '1px 24px 1px 16px',
-});
+  padding: '8px 16px', // Adjusted padding to match DataTableCell
+  minWidth: '120px',});
 
 const DataTableCell = styled(TableCell)({
-  fontSize: '22px',
+  fontSize: '18px',
   backgroundColor: 'transparent !important',
   borderColor: 'transparent !important',
   color: '#000000a6 !important',
   fontWeight: 'bolder',
-  padding: '1px 24px 1px 16px',
+  padding: '16px 16px', // Increased vertical padding to make cell taller
+  wordBreak: 'break-word',
+  maxWidth: '280px',
+  height: 'auto', // Allow cell to expand based on content
+  minHeight: '60px', // Set minimum height to ensure enough space
 });
 
 const DetailCardContent = styled(CardContent)({
@@ -104,6 +112,9 @@ const DetailCardContent = styled(CardContent)({
   alignItems: 'center',
   borderTop: '1px solid rgba(190, 106, 119, 0.3)',
   backdropFilter: 'blur(10px)',
+  padding: '24px 8px 24px 8px', // Increased vertical padding (top/bottom)
+  width: '100%', // Make sure it takes full width of the card
+  minHeight: '120px', // Set minimum height to ensure enough space
 });
 
 const StyledLoader = styled(CircularProgress)({
@@ -295,25 +306,38 @@ export const ImageUpload = () => {
               )}
               
               {data && (
-                <DetailCardContent>
-                  <StyledTableContainer component={Paper}>
-                    <StyledTable size="small" aria-label="simple table">
-                      <StyledTableHead>
-                        <StyledTableRow>
-                          <LabelTableCell>Label:</LabelTableCell>
-                          <LabelTableCell align="right">Confidence:</LabelTableCell>
-                        </StyledTableRow>
-                      </StyledTableHead>
-                      <TableBody>
-                        <StyledTableRow>
-                          <DataTableCell component="th" scope="row">
-                            {data.class}
-                          </DataTableCell>
-                          <DataTableCell align="right">{confidence}%</DataTableCell>
-                        </StyledTableRow>
-                      </TableBody>
-                    </StyledTable>
-                  </StyledTableContainer>
+                <DetailCardContent sx={{ 
+                  p: '0 !important', 
+                  backgroundColor: 'white', 
+                  borderRadius: '0 0 12px 12px',
+                  width: '100%'
+                }}>
+                  <Box sx={{ p: 3, width: '100%' }}>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#666', mb: 1 }}>
+                      Label:
+                    </Typography>
+                    
+                    <Typography variant="h6" sx={{ 
+                      fontWeight: 'medium', 
+                      color: '#333',
+                      lineHeight: 1.4,
+                      wordBreak: 'break-word'
+                    }}>
+                      {data.class}
+                    </Typography>
+                    
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
+                      <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#666' }}>
+                        Confidence:
+                      </Typography>
+                      <Typography variant="h6" sx={{ 
+                        fontWeight: 'bold', 
+                        color: '#333'
+                      }}>
+                        {confidence}%
+                      </Typography>
+                    </Box>
+                  </Box>
                 </DetailCardContent>
               )}
               
